@@ -1,298 +1,188 @@
-console.log('usama forayaje');
-// @ts-ignore
-let num2:number = 12;
-num2 = 13;
-// @ts-ignore
-// funtion define 
-function sum(a:number,b:number):number {
-    return a + b;
-}
-// fun call 
-console.log(sum(1,23));
+// Welcome to TypeScript Tutorial for Beginners
+// ============================================
 
-let longText:string = "This is a long sentence that we want to shorten."
-let shotText:string = longText.substring(0, 10);
-console.log(shotText);
+// What is TypeScript?
+// --------------------
+// TypeScript is a programming language built on JavaScript that adds static typing.
+// This means you can catch errors while writing code, making your programs safer and easier to debug.
 
+// Getting Started with TypeScript
+// --------------------------------
+// Step 1: Install Node.js if not installed.
+// Step 2: Install TypeScript globally by running:
+// npm install -g typescript
 
+// How to Run TypeScript Code
+// ---------------------------
+// Save your TypeScript code in a file with the `.ts` extension.
+// Compile the file to JavaScript using:
+// tsc filename.ts
+// Run the resulting JavaScript file using:
+// node filename.js
 
+// 1. Basic Types
+// ---------------
+// Use types to define the kind of values a variable can hold.
+let age: number = 25; // A number type variable
+let username: string = "John"; // A string type variable
+let isActive: boolean = true; // A boolean type variable
 
-let str1:string = 'usama';
-let str2:string = "forayaje";
-console.log(str1 === str2);
+console.log(`Age: ${age}, Username: ${username}, Active: ${isActive}`);
 
-let product:string = "book";
-let price:number = 100;
-price.toString();
-console.log(product + price);
+// 2. Arrays and Tuples
+// --------------------
+// Arrays store multiple values of the same type.
+let numbers: number[] = [1, 2, 3];
+console.log("Numbers:", numbers);
 
+// Tuples store multiple values of different types in a specific order.
+let userInfo: [string, number] = ["Alice", 30];
+console.log(`Name: ${userInfo[0]}, Age: ${userInfo[1]}`);
 
-function booleanHomeWork(b:number,a:number):boolean{
-    return (a % b == 5 ) 
-}
-console.log(booleanHomeWork(4,8));
-
-
-
-// let maxNumber = Number.MAX_SAFE_INTEGER;
-let maxNumber:bigint = 9007199254740991n
-console.log(maxNumber);
-
-let anotherMaxNumber = BigInt("9007199254740995")
-console.log(anotherMaxNumber);
-
-let maxTotal:bigint = maxNumber + anotherMaxNumber;
-console.log(maxTotal);
-
-
-
-
-function calculateAverage(numbers: number[]): number {
-    // Check if the array is empty to avoid division by zero
-    if (numbers.length === 0) {
-      throw new Error("Array cannot be empty");
-    }
-  
-    // Calculate the sum of the numbers
-    const sum = numbers.reduce((acc, num) => acc + num, 0);
-  
-    // Return the average
-    return sum / numbers.length;
-  }
-  
-  // Example usage
-  const numbers = [10, 20, 30, 40, 50];
-  const average = calculateAverage(numbers);
-  console.log(`The average is: ${average}`); // Output: The average is: 30
-  
-
-
-  function findMaxValue(maxNumbers: number[]): number {
-    // Check if the array is empty to avoid errors
-    if (maxNumbers.length === 0) {
-      throw new Error("Array cannot be empty");
-    }
-  
-    // Use the Math.max function to find the maximum value
-    return Math.max(...maxNumbers);
-  }
-  
-  // Example usage
-  const maxNumbers = [5, 12, 3, 8, 21, 7];
-  const maxValue = findMaxValue(maxNumbers);
-  console.log(`The maximum value is: ${maxValue}`); // Output: The maximum value is: 21
-  
-// obj
-
-  const parson:{
-    name:string;
-    age:number;
-    isStudent:boolean;
-    address:{city:string; country:string}
-  } = {
-    name: "usama",
-    age: 22,
-    isStudent: true,
-    address: {
-      city: "peni",
-      country: "bangladesh"
-    }
-  }
-  console.log(parson.address.country);
-
-// abj
-type Product = {
-  name: string;
-  price: number;
-  quantity: number
-}
-const product1:Product = {
-  name: "laptop",
-  price: 10000,
-  quantity: 5
-}
-const calculateTotalPrice = (product1:Product) => {
-  return product1.price * product1.quantity
-}
- console.log(calculateTotalPrice(product1));
-
-// type alias 
-type Parson = {
-  name:string;
-  age:number;
-  isStudent:true;
-  address:{city:string; country:string}
+// 3. Enums
+// --------
+// Enums allow you to define a set of named constants.
+enum Role {
+  Admin,
+  User,
+  Guest,
 }
 
-// example
-let parson2:Parson = {
-  name: "usama",
-  age: 22,
-  isStudent: true,
-  address: {
-    city: "peni",
-    country: "bangladesh"
-  }
-}
-let parson3:Parson = {
-  name: "usama",
-  age: 22,
-  isStudent: true,
-  address: {
-    city: "peni",
-    country: "bangladesh"
-  }
-}
-let parson4:Parson = {
-  name: "usama",
-  age: 22,
-  isStudent: true,
-  address: {
-    city: "peni",
-    country: "bangladesh"
-  }
-}
+let userRole: Role = Role.User;
+console.log(`User Role: ${Role[userRole]}`);
 
-// call signatures 
-type Student = {
+// 4. Functions
+// ------------
+// Functions can have typed parameters and return values.
+function add(a: number, b: number): number {
+  return a + b;
+}
+console.log(`Sum of 5 and 10: ${add(5, 10)}`);
+
+// Optional and Default Parameters
+function greet(name: string, age: number = 18): string {
+  return `Hello ${name}, you are ${age} years old!`;
+}
+console.log(greet("Bob"));
+
+// 5. Objects
+// ----------
+// Objects can have a defined structure using types.
+type User = {
   name: string;
   age: number;
-  gender?: string;
-  greet: (country:string) => string //method call signature
+  isStudent: boolean;
 };
 
-const student1: Student = {
-  name: "Usama",
+let user: User = {
+  name: "Charlie",
   age: 22,
-  greet : ((country) : string => `Welcome! My name is ${student1.name}, I am ${student1.age} years old. I am from ${country}`)
+  isStudent: true,
 };
-const student2: Student = {
-  name: "Ubada",
-  age: 22,
-  greet : ((country) : string => `Welcome! My name is ${student2.name}, I am ${student1.age} years old. I am from ${country}`)
-};
-const student3: Student = {
-  name: "Umara",
-  age: 22,
-  greet : ((country) : string => `Welcome! My name is ${student3.name}, I am ${student1.age} years old. I am from ${country}`)
-};
+console.log("User Info:", user);
 
-const introduction = (student: Student): string => {
-  const { name, age } = student;
-  return `Welcome! My name is ${name}, I am ${age} years old.`;
-};
-
-console.log(introduction(student1));
-console.log( student1.greet('bangladesh'));
-console.log( student2.greet('palistain'));
-console.log( student3.greet('iraq'));
-
-
-// enums in ts
-enum Roles {
-  user = 'user',
-  admin = 'admin'
+// 6. Union and Intersection Types
+// --------------------------------
+// Union Type allows a variable to hold values of different types.
+function printId(id: number | string): void {
+  console.log(`ID: ${id}`);
 }
- 
-type LoginDetails = {
-  name?: string;
-  email: string;
-  password: string;
-  role:Roles
+printId(123);
+printId("ABC123");
 
-}
-
-const user1:LoginDetails = {
-  name: "usama",
-  email: "xyz@gmail.com",
-  password: " xyz",
-  role:Roles.admin
-}
-const user2:LoginDetails = {
-  name: "ubada",
-  email: "xyz@gmail.com",
-  password: " xyz",
-  role:Roles.user
-}
-
- const isAdmin = (user: LoginDetails): string => {
-  const {name , role} = user;
-  return role === "admin" ? `${name} is allow to edit the website` : `${name} is not allow to edit the website`
- }
-
- console.log(isAdmin(user1));
- console.log(isAdmin(user2));
- 
-// Tuples 
-type PersonInfo = readonly [string, number, boolean];
-
-// Function to display person information
-const displayPersonInfo = (person: PersonInfo): void => {
-  const [name, age, license] = person;
-  console.log(`Name: ${name}, Age: ${age}, License: ${license ? "yes" : "no"}`);
+// Intersection Type combines multiple types into one.
+type Employee = {
+  empId: number;
+  department: string;
 };
 
-// Example usage
-const person5: PersonInfo = ['Usama', 29, true];
-const person6: PersonInfo = ['Ubada', 29, false];
+type Person = {
+  name: string;
+  age: number;
+};
 
-displayPersonInfo(person5);
-displayPersonInfo(person6);
+type Staff = Employee & Person;
+let staffMember: Staff = {
+  empId: 101,
+  department: "HR",
+  name: "Diana",
+  age: 28,
+};
+console.log("Staff Info:", staffMember);
 
-// homework
-type ProductInfo = readonly [string, number, number];
-
-const displayProductSum = (product: ProductInfo) => {
-  const [name, price , quantity] = product;
-  console.log(`Total ${name} Price is ${price * quantity}  `);
-  
+// 7. Generics
+// -----------
+// Generics make functions flexible and reusable.
+function identity<T>(value: T): T {
+  return value;
 }
+console.log("String Identity:", identity<string>("Hello"));
+console.log("Number Identity:", identity<number>(42));
 
-const product2: ProductInfo = ['apple' , 400, 10]
-const product3: ProductInfo = ['orang' , 200, 20]
- 
-displayProductSum(product2)
-displayProductSum(product3)
+// 8. Classes
+// ----------
+// Classes define blueprints for objects.
+class Animal {
+  name: string;
 
+  constructor(name: string) {
+    this.name = name;
+  }
 
-// Union Type
-const inputValue = (value: string | number | boolean) => {
-
-}
-
-inputValue( 55)
-inputValue( "hello")
-inputValue( true)
-
-
-// funtion 
-const userInput = (value: string | number | boolean):string | number => {
-  if (typeof value === "number") {
-    return value * 2
-  }else if (typeof value === "string"){
-    return value.toUpperCase()
-  }else{
-    throw new Error("value is a boolean")
+  makeSound(): void {
+    console.log(`${this.name} makes a sound.`);
   }
 }
- console.log(userInput(10));
- console.log(userInput("usama"));
-  
-// Intersection Types
-type Person1 = {
+
+const cat = new Animal("Cat");
+cat.makeSound();
+
+// 9. Interfaces
+// -------------
+// Interfaces are similar to types and define object structures.
+interface Vehicle {
+  brand: string;
+  speed: number;
+  drive(): void;
+}
+
+const bike: Vehicle = {
+  brand: "Yamaha",
+  speed: 80,
+  drive() {
+    console.log(`Driving a ${this.brand} at ${this.speed} km/h.`);
+  },
+};
+
+bike.drive();
+
+// 10. Advanced Topics
+// --------------------
+// Readonly and Optional Properties
+type Product = {
+  readonly id: number;
   name: string;
-  age: number
+  price?: number; // Optional property
+};
+
+const product: Product = { id: 1, name: "Tablet" };
+console.log("Product Info:", product);
+
+// product.id = 2; // Error: Cannot assign to 'id' because it is a read-only property.
+
+// 11. Modules
+// -----------
+// Export and Import example.
+export function multiply(a: number, b: number): number {
+  return a * b;
 }
 
-type Employ = {
-  emp_id: number;
-  department: string
-}
+// Import example (in another file):
+// import { multiply } from './filename';
+// console.log(multiply(2, 3));
 
-// generics 
-function add<T,U> (a:T , b:U) {
- console.log(typeof a);
- 
-}
-const result1 = add<number,string>(5 ,"hello")
-const result2 = add("hello" , 10);
+// Congratulations!
+// -----------------
+// You have learned the basics of TypeScript. Practice more to master it.
+// This tutorial was created by Usama Forayaje to help you take your skills to the next level.
+// Happy coding!
