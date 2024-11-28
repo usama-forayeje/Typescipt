@@ -82,3 +82,217 @@ function calculateAverage(numbers: number[]): number {
   const maxValue = findMaxValue(maxNumbers);
   console.log(`The maximum value is: ${maxValue}`); // Output: The maximum value is: 21
   
+// obj
+
+  const parson:{
+    name:string;
+    age:number;
+    isStudent:boolean;
+    address:{city:string; country:string}
+  } = {
+    name: "usama",
+    age: 22,
+    isStudent: true,
+    address: {
+      city: "peni",
+      country: "bangladesh"
+    }
+  }
+  console.log(parson.address.country);
+
+// abj
+type Product = {
+  name: string;
+  price: number;
+  quantity: number
+}
+const product1:Product = {
+  name: "laptop",
+  price: 10000,
+  quantity: 5
+}
+const calculateTotalPrice = (product1:Product) => {
+  return product1.price * product1.quantity
+}
+ console.log(calculateTotalPrice(product1));
+
+// type alias 
+type Parson = {
+  name:string;
+  age:number;
+  isStudent:true;
+  address:{city:string; country:string}
+}
+
+// example
+let parson2:Parson = {
+  name: "usama",
+  age: 22,
+  isStudent: true,
+  address: {
+    city: "peni",
+    country: "bangladesh"
+  }
+}
+let parson3:Parson = {
+  name: "usama",
+  age: 22,
+  isStudent: true,
+  address: {
+    city: "peni",
+    country: "bangladesh"
+  }
+}
+let parson4:Parson = {
+  name: "usama",
+  age: 22,
+  isStudent: true,
+  address: {
+    city: "peni",
+    country: "bangladesh"
+  }
+}
+
+// call signatures 
+type Student = {
+  name: string;
+  age: number;
+  gender?: string;
+  greet: (country:string) => string //method call signature
+};
+
+const student1: Student = {
+  name: "Usama",
+  age: 22,
+  greet : ((country) : string => `Welcome! My name is ${student1.name}, I am ${student1.age} years old. I am from ${country}`)
+};
+const student2: Student = {
+  name: "Ubada",
+  age: 22,
+  greet : ((country) : string => `Welcome! My name is ${student2.name}, I am ${student1.age} years old. I am from ${country}`)
+};
+const student3: Student = {
+  name: "Umara",
+  age: 22,
+  greet : ((country) : string => `Welcome! My name is ${student3.name}, I am ${student1.age} years old. I am from ${country}`)
+};
+
+const introduction = (student: Student): string => {
+  const { name, age } = student;
+  return `Welcome! My name is ${name}, I am ${age} years old.`;
+};
+
+console.log(introduction(student1));
+console.log( student1.greet('bangladesh'));
+console.log( student2.greet('palistain'));
+console.log( student3.greet('iraq'));
+
+
+// enums in ts
+enum Roles {
+  user = 'user',
+  admin = 'admin'
+}
+ 
+type LoginDetails = {
+  name?: string;
+  email: string;
+  password: string;
+  role:Roles
+
+}
+
+const user1:LoginDetails = {
+  name: "usama",
+  email: "xyz@gmail.com",
+  password: " xyz",
+  role:Roles.admin
+}
+const user2:LoginDetails = {
+  name: "ubada",
+  email: "xyz@gmail.com",
+  password: " xyz",
+  role:Roles.user
+}
+
+ const isAdmin = (user: LoginDetails): string => {
+  const {name , role} = user;
+  return role === "admin" ? `${name} is allow to edit the website` : `${name} is not allow to edit the website`
+ }
+
+ console.log(isAdmin(user1));
+ console.log(isAdmin(user2));
+ 
+// Tuples 
+type PersonInfo = readonly [string, number, boolean];
+
+// Function to display person information
+const displayPersonInfo = (person: PersonInfo): void => {
+  const [name, age, license] = person;
+  console.log(`Name: ${name}, Age: ${age}, License: ${license ? "yes" : "no"}`);
+};
+
+// Example usage
+const person5: PersonInfo = ['Usama', 29, true];
+const person6: PersonInfo = ['Ubada', 29, false];
+
+displayPersonInfo(person5);
+displayPersonInfo(person6);
+
+// homework
+type ProductInfo = readonly [string, number, number];
+
+const displayProductSum = (product: ProductInfo) => {
+  const [name, price , quantity] = product;
+  console.log(`Total ${name} Price is ${price * quantity}  `);
+  
+}
+
+const product2: ProductInfo = ['apple' , 400, 10]
+const product3: ProductInfo = ['orang' , 200, 20]
+ 
+displayProductSum(product2)
+displayProductSum(product3)
+
+
+// Union Type
+const inputValue = (value: string | number | boolean) => {
+
+}
+
+inputValue( 55)
+inputValue( "hello")
+inputValue( true)
+
+
+// funtion 
+const userInput = (value: string | number | boolean):string | number => {
+  if (typeof value === "number") {
+    return value * 2
+  }else if (typeof value === "string"){
+    return value.toUpperCase()
+  }else{
+    throw new Error("value is a boolean")
+  }
+}
+ console.log(userInput(10));
+ console.log(userInput("usama"));
+  
+// Intersection Types
+type Person1 = {
+  name: string;
+  age: number
+}
+
+type Employ = {
+  emp_id: number;
+  department: string
+}
+
+// generics 
+function add<T,U> (a:T , b:U) {
+ console.log(typeof a);
+ 
+}
+const result1 = add<number,string>(5 ,"hello")
+const result2 = add("hello" , 10);
